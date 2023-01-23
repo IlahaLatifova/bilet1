@@ -1,0 +1,65 @@
+﻿
+@model List<RecentPostGetVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Inverse table</h4>
+            <p class="card-description">
+                Recent Posts Manage Table
+            </p>
+            <div class="table-responsive pt-3">
+                <a class="btn btn-outline-success mb-2" asp-area="manage" asp-controller="Post" asp-action="Create">Create+</a>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>
+                                №
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                               Description
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @(i+1)
+                                </td>
+                                <td>
+                                    @Model[i].Title
+                                </td>
+                                <td>
+                                    @Model[i].Description
+                                </td>
+                                <td>
+                                    <img src="~/assets/images/@Model[i].ImageUrl">
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-light" style="color:midnightblue" asp-area="manage" asp-controller="Post" asp-action="Update" asp-route-id="@Model[i].Id"><i class="bi bi-pen-fill"></i> </a>
+                                    <a class="btn btn-outline-light" style="color:darkred" asp-area="manage" asp-controller="Post" asp-action="Delete" asp-route-id="@Model[i].Id"><i class="bi bi-trash-fill"></i> </a>
+
+                                </td>
+                            </tr>
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
